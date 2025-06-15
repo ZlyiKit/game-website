@@ -22,7 +22,7 @@ function WelcomePage({ onStart }) {
         <div className="left-panel">
           <div className="cat-container" aria-label="Cheerful cartoon cat">
             <img
-              src="/images/welcome_cat.png"
+              src={`${process.env.PUBLIC_URL}/images/welcome_cat.png`}
               alt="Cheerful cartoon cat"
               className="cat-image"
             />
