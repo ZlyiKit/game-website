@@ -1,0 +1,52 @@
+.header-container {
+  background-color: #dbe9f4;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: flex-end; /* Align everything to the right */
+  align-items: center;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.score-section {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.score-box {
+  background-color: #fffffd;
+  padding: 0.75rem 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.score-label {
+  font-size: 1.25rem;
+  color: #264d73;
+}
+
+.score-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000000;
+}
+
+.new-game-btn {
+  background-color: #264d73;
+  color: #f8f4e8;
+  font-size: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(38, 77, 115, 0.4);
+  transition: background-color 0.3s ease;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.new-game-btn:hover,
+.new-game-btn:focus {
+  background-color: #3f6ba6;
+  outline: none;
+}

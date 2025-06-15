@@ -1,0 +1,37 @@
+.arrow-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.arrow-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 1rem 0;
+}
+
+.arrow-btn {
+  font-size: 3rem;
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  border: 2px solid #bfae8f;
+  background-color: #fffffd;
+  color: #264d73;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s;
+}
+
+.arrow-btn:hover {
+  background-color: #dbe9f4;
+  transform: scale(1.1);
+}
+
+.arrow-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(38, 77, 115, 0.3);
+}

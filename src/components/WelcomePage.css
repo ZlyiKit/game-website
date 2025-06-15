@@ -1,0 +1,117 @@
+.welcome-container {
+  background: #dbe9f4;
+  color: #1e1e1e;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  min-height: 100vh;
+  min-width: 100vw;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.welcome-content-wrapper {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px; /* ✅ ADD THIS LINE */
+  box-sizing: border-box;
+}
+
+.welcome-title {
+  font-size: 3rem;
+  color: #264d73;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.welcome-panels {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 3rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.left-panel, .right-panel {
+  background-color: #fffffd;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  flex: 1;
+  max-width: 450px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.cat-container {
+  margin-bottom: 1rem;
+}
+
+.cat-image {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.welcome-tagline {
+  font-size: 1.4rem;
+  margin-top: 1rem;
+  text-align: center;
+  color: #000000;
+}
+
+.selector-group {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.grid-label {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #264d73;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.grid-select {
+  font-size: 1.25rem;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: 2px solid #bfae8f;
+  background-color: #ffffff;
+  color: #010101;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.start-btn {
+  background-color: #264d73;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  color: #f8f4e8;
+  font-size: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(38, 77, 115, 0.4);
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.start-btn:hover,
+.start-btn:focus {
+  background-color: #3f6ba6;
+  outline: none;
+}
