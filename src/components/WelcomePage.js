@@ -10,7 +10,7 @@ const levels = [
 
 function WelcomePage({ onStart }) {
   const [gridSize, setGridSize] = useState(4);
-  const [level, setLevel] = useState(levels[0].name);
+  const [level, setLevel] = useState(levels[0].target);
 
   return (
     <div className="welcome-container">
@@ -63,7 +63,7 @@ function WelcomePage({ onStart }) {
               aria-label="Select game difficulty level"
             >
               {levels.map(({ name, target }) => (
-                <option key={name} value={name}>
+                <option key={name} value={target}>
                   {name} (Target: {target.toLocaleString()} pts)
                 </option>
               ))}

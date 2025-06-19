@@ -7,6 +7,10 @@ export function initializeGrid(size = 4) {
   return addRandomTile(addRandomTile(grid));
 }
 
+export function selectedLevel(level = 5000){
+  return level;
+}
+
 export function move(grid, direction) {
   let transformedGrid = transformGrid(grid, direction);
   let { newGrid, gainedScore, moved } = slideAndMerge(transformedGrid);

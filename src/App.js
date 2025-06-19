@@ -4,7 +4,7 @@ import GameBoard from "./components/GameBoard";
 import ArrowControls from "./components/ArrowControls";
 import WelcomePage from "./components/WelcomePage";
 import NavBar from "./components/NavBar";
-import { initializeGrid, move, addRandomTile } from "./utils/gameLogic";
+import { initializeGrid, move, addRandomTile, selectedLevel } from "./utils/gameLogic";
 
 // Dummy About and Rules components for now:
 const About = () => (
@@ -30,20 +30,26 @@ function App() {
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [hasGameStarted, setHasGameStarted] = useState(false);
+  const [gameWon, setGameWon] = useState(false);
+  const [targetScore, setTargetScore] = useState(5000);
+
+  
 
   const startNewGame = (selectedGridSize, level) => {
     setGridSize(selectedGridSize);
     const initialGrid = initializeGrid(selectedGridSize);
     setGrid(initialGrid);
     setScore(0);
+    setTargetScore(5000);
     setGameOver(false);
-    setHasGameStarted(true); // ✅ mark that game was started
+    setHasGameStarted(true);
     setScreen("game");
   };
 
   const handleMove = useCallback(
     (direction) => {
       if (gameOver || !direction) return;
+      if (gameWon) return;
 
       setGrid((currentGrid) => {
         const { newGrid, gainedScore, moved } = move(currentGrid, direction);
@@ -51,6 +57,7 @@ function App() {
 
         const updatedGrid = addRandomTile(newGrid);
         setScore((prevScore) => prevScore + gainedScore);
+        if (score >= targetScore){setGameWon(true);} // score doesn't change and stays at 0
 
         if (isGameOver(updatedGrid)) {
           setGameOver(true);
@@ -58,7 +65,7 @@ function App() {
         return updatedGrid;
       });
     },
-    [gameOver]
+    [gameOver || gameWon]
   );
 
   const handleKeyDown = useCallback(
@@ -101,6 +108,8 @@ function App() {
           <GameBoard grid={grid} onMove={handleMove} />
           <ArrowControls onMove={handleMove} />
           {gameOver && <div className="game-over">Game Over</div>}
+          {gameWon && <div className="win-message">You Win!</div>}
+
         </>
       )}
 
@@ -125,8 +134,28 @@ function getDirection(key) {
   }
 }
 
-function isGameOver(grid) {
-  return false; // Still to implement
+function isGameOver(board) {
+  const size = board.length;
+
+  for (let row = 0; row < size; row++) {
+    for (let col = 0; col < size; col++) {
+      if (board[row][col] === 0) {
+        return false;
+      }
+    }
+  }
+
+  for (let row = 0; row < size; row++) {
+    for (let col = 0; col < size; col++) {
+      const current = board[row][col];
+
+      if (col + 1 < size && board[row][col + 1] === current) return false;
+
+      if (row + 1 < size && board[row + 1][col] === current) return false;
+    }
+  }
+
+  return true;
 }
 
 export default App;
