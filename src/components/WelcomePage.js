@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import "./WelcomePage.css";
 
 const levels = [
-  { name: "Beginner", target: 5000 },
-  { name: "Next Level", target: 10000 },
-  { name: "Advanced", target: 30000 },
-  { name: "Expert", target: 100000 },
+  { name: "Beginner", target: 100 },
+  { name: "Next Level", target: 300 },
+  { name: "Advanced", target: 500 },
+  { name: "Expert", target: 1000 },
 ];
 
 function WelcomePage({ onStart }) {

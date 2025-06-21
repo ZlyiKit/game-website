@@ -1,0 +1,32 @@
+.about-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  background: #fffdf6;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  text-align: center;
+}
+
+.about-title {
+  font-size: 2rem;
+  color: #264d73;
+  margin-bottom: 1rem;
+}
+
+.about-text {
+  font-size: 1.25rem;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.cat-image-wrapper {
+  margin-top: 2rem;
+}
+
+.about-cat {
+  width: 180px;
+  height: auto;
+}

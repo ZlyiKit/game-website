@@ -12,6 +12,13 @@
   align-items: center;
   gap: 1.5rem;
 }
+.target-label {
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  color: #264d73;
+  font-weight: 600;
+}
+
 
 .score-box {
   background-color: #fffffd;

@@ -4,24 +4,17 @@ import GameBoard from "./components/GameBoard";
 import ArrowControls from "./components/ArrowControls";
 import WelcomePage from "./components/WelcomePage";
 import NavBar from "./components/NavBar";
-import { initializeGrid, move, addRandomTile, selectedLevel } from "./utils/gameLogic";
+import GameOverModal from "./components/GameOverModal";
+import WinModal from "./components/WinModal";
+import Rules from "./components/Rules";
+import About from "./components/About";
+import Footer from "./components/Footer";
 
-// Dummy About and Rules components for now:
-const About = () => (
-  <div className="page-content">
-    <h2>About Us</h2>
-    <p>This is a simple 2048 game clone made with React.</p>
-  </div>
-);
-
-const Rules = () => (
-  <div className="page-content">
-    <h2>Rules</h2>
-    <p>
-      Swipe or click to combine tiles of the same number until you reach 2048!
-    </p>
-  </div>
-);
+import {
+  initializeGrid,
+  move,
+  addRandomTile,
+} from "./utils/gameLogic";
 
 function App() {
   const [screen, setScreen] = useState("welcome");
@@ -33,39 +26,42 @@ function App() {
   const [gameWon, setGameWon] = useState(false);
   const [targetScore, setTargetScore] = useState(5000);
 
-  
-
-  const startNewGame = (selectedGridSize, level) => {
+  const startNewGame = (selectedGridSize, selectedTargetScore) => {
     setGridSize(selectedGridSize);
     const initialGrid = initializeGrid(selectedGridSize);
     setGrid(initialGrid);
     setScore(0);
-    setTargetScore(5000);
+    setTargetScore(Number(selectedTargetScore)); // ensure it's a number
     setGameOver(false);
+    setGameWon(false);
     setHasGameStarted(true);
     setScreen("game");
   };
 
   const handleMove = useCallback(
     (direction) => {
-      if (gameOver || !direction) return;
-      if (gameWon) return;
+      if (gameOver || !direction || gameWon) return;
 
       setGrid((currentGrid) => {
         const { newGrid, gainedScore, moved } = move(currentGrid, direction);
         if (!moved) return currentGrid;
 
-        const updatedGrid = addRandomTile(newGrid);
-        setScore((prevScore) => prevScore + gainedScore);
-        if (score >= targetScore){setGameWon(true);} // score doesn't change and stays at 0
+        const updatedScore = score + gainedScore;
+        setScore(updatedScore);
 
+        if (updatedScore >= targetScore) {
+          setGameWon(true);
+        }
+
+        const updatedGrid = addRandomTile(newGrid);
         if (isGameOver(updatedGrid)) {
           setGameOver(true);
         }
+
         return updatedGrid;
       });
     },
-    [gameOver || gameWon]
+    [gameOver, gameWon, score, targetScore]
   );
 
   const handleKeyDown = useCallback(
@@ -87,6 +83,7 @@ function App() {
       setGrid(initialGrid);
       setScore(0);
       setGameOver(false);
+      setGameWon(false);
     }
   };
 
@@ -97,24 +94,42 @@ function App() {
         onShowAbout={() => setScreen("about")}
         onShowRules={() => setScreen("rules")}
         onShowGame={() => setScreen("game")}
-        hasGameStarted={hasGameStarted} 
+        hasGameStarted={hasGameStarted}
       />
 
       {screen === "welcome" && <WelcomePage onStart={startNewGame} />}
 
       {screen === "game" && gridSize && (
         <>
-          <Header score={score} resetGame={resetGame} />
-          <GameBoard grid={grid} onMove={handleMove} />
-          <ArrowControls onMove={handleMove} />
-          {gameOver && <div className="game-over">Game Over</div>}
-          {gameWon && <div className="win-message">You Win!</div>}
+          <Header
+            score={score}
+            resetGame={resetGame}
+            targetScore={targetScore}
+          />
 
+          <div className="game-container">
+            <GameBoard grid={grid} onMove={handleMove} />
+            <ArrowControls onMove={handleMove} />
+          </div>
+          {gameOver && (
+            <GameOverModal
+              onRestart={resetGame}
+              onGoHome={() => setScreen("welcome")}
+            />
+          )}
+
+          {gameWon && (
+            <WinModal
+              onRestart={resetGame}
+              onGoHome={() => setScreen("welcome")}
+            />
+          )}
         </>
       )}
 
       {screen === "about" && <About />}
       {screen === "rules" && <Rules />}
+      <Footer />
     </div>
   );
 }
