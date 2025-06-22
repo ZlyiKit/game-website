@@ -4,7 +4,7 @@ import './Footer.css';
 function Footer() {
   return (
     <footer className="footer">
-      <p>Designed by Alona & Usman for SEG3125</p>
+      <p>Designed by uOttawa students for SEG3125</p>
     </footer>
   );
 }
