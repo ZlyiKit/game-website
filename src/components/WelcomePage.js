@@ -3,9 +3,9 @@ import "./WelcomePage.css";
 
 const levels = [
   { name: "Beginner", target: 100 },
-  { name: "Next Level", target: 300 },
-  { name: "Advanced", target: 500 },
-  { name: "Expert", target: 1000 },
+  { name: "Intermediate", target: 500 },
+  { name: "Advanced", target: 2500 },
+  { name: "Expert", target: 5000 },
 ];
 
 function WelcomePage({ onStart }) {
